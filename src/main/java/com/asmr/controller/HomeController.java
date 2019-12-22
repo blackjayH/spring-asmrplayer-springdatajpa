@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.asmr.service.UserService;
 import com.asmr.vo.UserVO;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -26,7 +23,27 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		//UserVO user = new UserVO("sibal", "sibal");
 		//userservice.insertjpaUser(user);	
-		return "home";
+		return "main_join";
 	}
 	
+	@RequestMapping(value = "/v/login")
+	public String login() {
+		//UserVO user = new UserVO("sibal", "sibal");
+		//userservice.insertjpaUser(user);	
+		return "main_login";
+	}
+	
+	@RequestMapping(value = "/v/join")
+	public String join() {
+		//UserVO user = new UserVO("sibal", "sibal");
+		//userservice.insertjpaUser(user);	
+		return "main_join";
+	}
+	
+	@RequestMapping(value = "/v/update")
+	public String update() {
+		//UserVO user = new UserVO("sibal", "sibal");
+		//userservice.insertjpaUser(user);	
+		return "main_udpate";
+	}
 }

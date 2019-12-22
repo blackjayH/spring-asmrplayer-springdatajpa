@@ -13,8 +13,16 @@ public class UserRepositoryImpl implements UserRepository {
 	EntityManager em;
 
 	@Override
-	public void insertjpaUser(UserVO uservo) {
+	public void insertUser(UserVO uservo) {
 		em.persist(uservo);
+	}
+	
+	@Override
+	public UserVO checkUser(String id) {
+		// Member findMember = em.find(Member.class, member.getId());
+		//UserVO findUser = 
+		return em.find(UserVO.class, id);
+		//return findUser;
 	}
 
 }

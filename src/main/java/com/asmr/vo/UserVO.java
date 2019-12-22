@@ -6,17 +6,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
-public class UserVO { // 유저 
+@Table(name = "user")
+public class UserVO { // 유저
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	private String id;
-	@Column(name="pw")
+	@Column(name = "pw")
 	private String pw;
-	public UserVO (String id, String pw) {
+
+	protected UserVO() {
+		
+	}
+	
+	protected UserVO(String id, String pw) {
 		this.id = id;
 		this.pw = pw;
 	}
+
 	public String getId() {
 		return id;
 	}

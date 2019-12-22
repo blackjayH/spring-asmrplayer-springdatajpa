@@ -8,14 +8,23 @@ import com.asmr.repository.UserRepository;
 import com.asmr.vo.UserVO;
 
 @Service
-@Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userrepository;
-	
-	@Override
-	public void insertjpaUser(UserVO uservo) {
-		userrepository.insertjpaUser(uservo);
-	}
 
+	@Override
+	@Transactional
+	public void insertUser(UserVO uservo) {
+		userrepository.insertUser(uservo);
+	}
+	
+	//public void selectUser() {
+		//userrepository.insertUser(uservo);
+	//}
+
+	@Override
+	@Transactional
+	public UserVO checkUser(String id) {
+		return userrepository.checkUser(id);
+	}
 }

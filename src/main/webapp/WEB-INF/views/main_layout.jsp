@@ -16,16 +16,18 @@
 
 <link rel='stylesheet'
 	href='http://fonts.googleapis.com/earlyaccess/nanumpenscript.css'>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/main.css">
 <!--[if !ie]>-->
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/mainIE.css">
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/mainIE.css">
 <!--[endif]-->
 
 <title>main</title>
 
 <script src="http://code.jquery.com/jquery-latest.js">
-var form = document.getElementById('logout');
-form.style.display = "";
+	var form = document.getElementById('logout');
+	form.style.display = "";
 </script>
 
 
@@ -44,8 +46,9 @@ form.style.display = "";
 		<p class="t_field" name="t_field" id="t_field" style="display: none;">0시
 			0분 0</p>
 		<ul>
-			<li><a href="#"><img class="timer" src="${path}/resources/image/timer.png"
-					width="80px" height="auto" align="center"> </a>
+			<li><a href="#"><img class="timer"
+					src="${path}/resources/image/timer.png" width="80px" height="auto"
+					align="center"> </a>
 				<ul>
 					<li><a href="javascript:timer()">시작</a></li>
 					<li><a href="javascript:stoptimer()">정지</a></li>
@@ -55,12 +58,11 @@ form.style.display = "";
 		</nav>
 	</div>
 
-	<a href="${path}/view/login" id="login" > <login
-			class="login">로그인</login>
+	<a href="${path}/v/login" id="login" > <login class="login">로그인</login>
 	</a>
 
-	<a href="javascript:logout();" id="logout" style="display: none;">
-		<login class="login">로그아웃</login>
+	<a href="${path}/logout" id="logout" style="display: none;"> <login
+			class="login">로그아웃</login>
 	</a>
 
 
@@ -68,8 +70,9 @@ form.style.display = "";
 		<div class="wrapper2">
 
 			<div class="header">
-				<a><img id="play_icon" onclick='playall()' src="${path}/resources/image/play.png"
-					width="150px" height="auto" align="center"></a>
+				<a><img id="play_icon" onclick='playall()'
+					src="${path}/resources/image/play.png" width="150px" height="auto"
+					align="center"></a>
 
 				<hBtn class="button"> <select name="Slot">
 					<option selected>저장 슬롯</option>
@@ -93,8 +96,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/rain.png" width="70%" height="auto" align="center">
-						</a>
+						<img src="${path}/resources/image/rain.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -105,8 +108,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/grass.png" width="70%" height="auto" align="center">
-						</a>
+						<img src="${path}/resources/image/grass.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -117,8 +120,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/wind.png" width="70%" height="auto" align="center">
-						</a>
+						<img src="${path}/resources/image/wind.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -129,8 +132,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/storm.png" width="70%" height="auto" align="center">
-						</a>
+						<img src="${path}/resources/image/storm.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -141,8 +144,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/singing-bowl.png" width="70%" height="auto"
-							align="center"> </a>
+						<img src="${path}/resources/image/singing-bowl.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -153,8 +156,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/dove.png" width="70%" height="auto" align="center">
-						</a>
+						<img src="${path}/resources/image/dove.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -165,8 +168,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/bonfire.png" width="70%" height="auto"
-							align="center"> </a>
+						<img src="${path}/resources/image/bonfire.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -177,8 +180,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/wave.png" width="70%" height="auto" align="center">
-						</a>
+						<img src="${path}/resources/image/wave.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -189,8 +192,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/coffee-cup.png" width="70%" height="auto"
-							align="center"> </a>
+						<img src="${path}/resources/image/coffee-cup.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -201,8 +204,8 @@ form.style.display = "";
 						</a> </div1>
 					</div>
 					<div id="side">
-						<img src="${path}/resources/image/television.png" width="70%" height="auto"
-							align="center"> </a>
+						<img src="${path}/resources/image/television.png" width="70%"
+							height="auto" align="center"> </a>
 
 					</div>
 				</div>
@@ -214,10 +217,11 @@ form.style.display = "";
 		<div class="wrapper">
 
 			<div class="panel">
-				<img id="icon0" src="${path}/resources/image/rain.png" width="100" height="100"
-					onclick="play(1,'.menu1')" onmouseenter="hide_list('.hide1')">
-				<input class="slider" id="volumeslider0" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(0)">
+				<img id="icon0" src="${path}/resources/image/rain.png" width="100"
+					height="100" onclick="play(1,'.menu1')"
+					onmouseenter="hide_list('.hide1')"> <input class="slider"
+					id="volumeslider0" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(0)">
 				<ul class="hide1">
 					<li><a href="javascript:play(1,'.menu1');"> #1</a></li>
 					<li><a href="javascript:play(2,'.menu1');"> #2</a></li>
@@ -227,10 +231,11 @@ form.style.display = "";
 			</div>
 
 			<div class="panel">
-				<img id="icon10" src="${path}/resources/image/grass.png" width="100" height="100"
-					onclick="play(10,'.menu2')" onmouseenter="hide_list('.hide2')">
-				<input class="slider" id="volumeslider1" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(1)">
+				<img id="icon10" src="${path}/resources/image/grass.png" width="100"
+					height="100" onclick="play(10,'.menu2')"
+					onmouseenter="hide_list('.hide2')"> <input class="slider"
+					id="volumeslider1" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(1)">
 
 				<ul class="hide2">
 					<li><a href="javascript:play(11,'.menu2');"> #1</a></li>
@@ -240,10 +245,11 @@ form.style.display = "";
 				</ul>
 			</div>
 			<div class="panel">
-				<img id="icon20" src="${path}/resources/image/wind.png" width="100" height="100"
-					onclick="play(20,'.menu3')" onmouseenter="hide_list('.hide3')">
-				<input class="slider" id="volumeslider2" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(2)">
+				<img id="icon20" src="${path}/resources/image/wind.png" width="100"
+					height="100" onclick="play(20,'.menu3')"
+					onmouseenter="hide_list('.hide3')"> <input class="slider"
+					id="volumeslider2" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(2)">
 				<ul class="hide3">
 					<li><a href="javascript:play(21,'.menu3');"> #1</a></li>
 					<li><a href="javascript:play(22,'.menu3');"> #2</a></li>
@@ -253,10 +259,11 @@ form.style.display = "";
 
 			</div>
 			<div class="panel">
-				<img id="icon30" src="${path}/resources/image/storm.png" width="100" height="100"
-					onclick="play(30,'.menu4')" onmouseenter="hide_list('.hide4')">
-				<input class="slider" id="volumeslider3" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(3)">
+				<img id="icon30" src="${path}/resources/image/storm.png" width="100"
+					height="100" onclick="play(30,'.menu4')"
+					onmouseenter="hide_list('.hide4')"> <input class="slider"
+					id="volumeslider3" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(3)">
 				<ul class="hide4">
 					<li><a href="javascript:play(31,'.menu4');"> #1</a></li>
 					<li><a href="javascript:play(32,'.menu4');"> #2</a></li>
@@ -266,10 +273,11 @@ form.style.display = "";
 
 			</div>
 			<div class="panel">
-				<img id="icon40" src="${path}/resources/image/singing-bowl.png" width="100" height="100"
-					onclick="play(40,'.menu5')" onmouseenter="hide_list('.hide5')">
-				<input class="slider" id="volumeslider4" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(4)">
+				<img id="icon40" src="${path}/resources/image/singing-bowl.png"
+					width="100" height="100" onclick="play(40,'.menu5')"
+					onmouseenter="hide_list('.hide5')"> <input class="slider"
+					id="volumeslider4" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(4)">
 				<ul class="hide5">
 					<li><a href="javascript:play(41,'.menu5');"> #1</a></li>
 					<li><a href="javascript:play(42,'.menu5');"> #2</a></li>
@@ -279,10 +287,11 @@ form.style.display = "";
 
 			</div>
 			<div class="panel">
-				<img id="icon50" src="${path}/resources/image/dove.png" width="100" height="100"
-					onclick="play(50,'.menu6')" onmouseenter="hide_list('.hide6')">
-				<input class="slider" id="volumeslider5" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(5)">
+				<img id="icon50" src="${path}/resources/image/dove.png" width="100"
+					height="100" onclick="play(50,'.menu6')"
+					onmouseenter="hide_list('.hide6')"> <input class="slider"
+					id="volumeslider5" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(5)">
 				<ul class="hide6">
 					<li><a href="javascript:play(51,'.menu6');"> #1</a></li>
 					<li><a href="javascript:play(52,'.menu6');"> #2</a></li>
@@ -292,10 +301,11 @@ form.style.display = "";
 
 			</div>
 			<div class="panel">
-				<img id="icon60" src="${path}/resources/image/bonfire.png" width="100" height="100"
-					onclick="play(60,'.menu7')" onmouseenter="hide_list('.hide7')">
-				<input class="slider" id="volumeslider6" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(6)">
+				<img id="icon60" src="${path}/resources/image/bonfire.png"
+					width="100" height="100" onclick="play(60,'.menu7')"
+					onmouseenter="hide_list('.hide7')"> <input class="slider"
+					id="volumeslider6" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(6)">
 				<ul class="hide7">
 					<li><a href="javascript:play(61,'.menu7');"> #1</a></li>
 					<li><a href="javascript:play(62,'.menu7');"> #2</a></li>
@@ -305,11 +315,11 @@ form.style.display = "";
 
 			</div>
 			<div class="panel">
-				<img id="icon70" src="${path}/resources/image/wave.png" style="cursor: pointer"
-					width="100" height="100" onclick="play(70,'.menu8')"
-					onmouseenter="hide_list('.hide8')"> <input class="slider"
-					id="volumeslider7" type="range" min="0" max="10" value="100"
-					step="1" onclick="setvolume(7)">
+				<img id="icon70" src="${path}/resources/image/wave.png"
+					style="cursor: pointer" width="100" height="100"
+					onclick="play(70,'.menu8')" onmouseenter="hide_list('.hide8')">
+				<input class="slider" id="volumeslider7" type="range" min="0"
+					max="10" value="100" step="1" onclick="setvolume(7)">
 				<ul class="hide8">
 					<li><a href="javascript:play(71,'.menu8');"> #1</a></li>
 					<li><a href="javascript:play(72,'.menu8');"> #2</a></li>
@@ -319,10 +329,11 @@ form.style.display = "";
 
 			</div>
 			<div class="panel">
-				<img id="icon80" src="${path}/resources/image/coffee-cup.png" width="100" height="100"
-					onclick="play(80,'.menu9')" onmouseenter="hide_list('.hide9')">
-				<input class="slider" id="volumeslider8" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(8)">
+				<img id="icon80" src="${path}/resources/image/coffee-cup.png"
+					width="100" height="100" onclick="play(80,'.menu9')"
+					onmouseenter="hide_list('.hide9')"> <input class="slider"
+					id="volumeslider8" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(8)">
 				<ul class="hide9">
 					<li><a href="javascript:play(81,'.menu9');"> #1</a></li>
 					<li><a href="javascript:play(82,'.menu9');"> #2</a></li>
@@ -332,10 +343,11 @@ form.style.display = "";
 
 			</div>
 			<div class="panel">
-				<img id="icon90" src="${path}/resources/image/television.png" width="100" height="100"
-					onclick="play(90,'.menu10')" onmouseenter="hide_list('.hide10')">
-				<input class="slider" id="volumeslider9" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(9)">
+				<img id="icon90" src="${path}/resources/image/television.png"
+					width="100" height="100" onclick="play(90,'.menu10')"
+					onmouseenter="hide_list('.hide10')"> <input class="slider"
+					id="volumeslider9" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(9)">
 				<ul class="hide10">
 					<li><a href="javascript:play(91,'.menu10');"> #1</a></li>
 					<li><a href="javascript:play(92,'.menu10');"> #2</a></li>

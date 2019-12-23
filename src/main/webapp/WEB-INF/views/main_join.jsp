@@ -18,73 +18,84 @@
 
 <title>회원가입</title>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.1.0.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script>
-		var flag = false; // ID 중복 체크 여부 변수
-		// ID 중복체크 액션 GET
-		$(document).ready(function() {
-			$("#btnCheck").click(function() {
-				if ($('#id').val().length < 1) 
-					alert('아이디 미입력');
+<script src="http://code.jquery.com/jquery-migrate-1.1.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	// ID 중복 체크 여부 변수
+	var flag = false;
+	// id 중복체크 
+	$(document).ready(function() {
+		$("#btnCheck").click(function() {
+			if ($('#id').val().length < 1)
+				alert('아이디 미입력');
+			var id = $('#id').val();
+			$.ajax({
+				type : "GET",
+				url : "${path}/user/" + id,
+				success : function(response) {
+					if (response.result == true) {
+						var confirmid = confirm("이 아이디를 사용하시겠습니까?");
+						if (confirmid == true) {
+							alert("회원가입 버튼을 눌러주세요.")
+							flag = true;
+						}
+						else {
+							alert("사용하실 다른 id를 입력해주세요.")
+							flag = false;
+						} 		
+					} else {
+						alert('이미 존재하는 아이디입니다.\n 사용하실 다른 id를 입력해주세요.');
+						flag = false;
+					}
+				},
+				error : function(error) {
+					alert(error);
+				}
+			});
+		});
+	});
+	// 회원가입 
+	$(document).ready(function() {
+		$("#btnSubmit").click(function() {
+			if ($('#pw').val().length < 1)
+				alert('페스워드 미입력');
+			else if ($('#pw').val() != $('#pw2').val())
+				alert('페스워드 확인해주세요');
+			else {
 				var id = $('#id').val();
+				var pw = $('#pw').val();
 				$.ajax({
-					type : "GET",
-					//data : id,
-					url : "${path}/user/" + id,
+					type : "POST",
+					data : JSON.stringify({
+						id : id,
+						pw : pw
+					}),
+					url : "${path}/user",
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
 					success : function(response) {
-						if(response.result == true)
-							alert('18');
+						if (response.result == true)
+							location.href = '${path}/v/login'
 						else
-							alert('실패');	
+							alert('회원가입 실패');
 					},
 					error : function(error) {
 						alert(error);
 					}
-				});
-			});
-		});
-		// 회원가입 액션 POST
-		$(document).ready(function() {
-			$("#btnSubmit").click(function() {
-				//if ($('#pw').val().length < 1)
-				//	alert('페스워드 미입력');
-				//else if ($('#pw').val() != $('#pw2').val())
-				//	alert('페스워드 확인해주세요');
-				//else {
-					var id = $('#id').val();
-					var pw = $('#pw').val();
-					$.ajax({
-						type : "POST",
-						data : JSON.stringify({
-							id : id,
-							pw : pw
-						}),
-						url : "${path}/user",
-						contentType : 'application/json;charset=utf-8',
-						dataType : 'json',
-						success : function(response) {
-							if(response.result == true)
-								alert('성공');
-							else
-								alert('실패');						
-						},
-						error : function(error) {
-							alert(error);
-						}
 
-					});			
-				//}
-			});
+				});
+			}
 		});
-	</script>
+	});
+</script>
 </head>
 <body>
 	<div class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px;">
-				<form name="form2" >
+				<form name="form">
 					<h3 style="text-align: center;">회원가입 화면</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디" id="id"
@@ -111,7 +122,5 @@
 		</div>
 		<div class="col-lg-4"></div>
 	</div>
-
-	
 </body>
 </html>

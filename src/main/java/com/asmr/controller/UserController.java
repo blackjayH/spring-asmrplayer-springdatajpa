@@ -3,6 +3,8 @@ package com.asmr.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +23,6 @@ public class UserController {
 	@Autowired
 	UserService userservice;
 
-	// id 중복 체크
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	public Map<String, Object> checkUser(@PathVariable String id) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		UserVO uservo = userservice.checkUser(id);
-		result.put("result", Boolean.TRUE);
-		return result;
-	}
-
 	// 회원가입
 	@RequestMapping(value = "/user", method = RequestMethod.POST, headers = { "Content-type=application/json" })
 	public Map<String, Object> insertUser(@RequestBody UserVO uservo) {
@@ -39,49 +32,57 @@ public class UserController {
 		return result;
 	}
 
-	/*
-	 * // Restful API 전체 로드
-	 * 
-	 * @RequestMapping(value = "/board2", method = RequestMethod.GET) public
-	 * Map<String, Object> listBoard() { Map<String, Object> result = new
-	 * HashMap<>(); List<BoardVO> list = boardservice.listAll(); result.put("list",
-	 * list); result.put("result", Boolean.TRUE); return result; }
-	 * 
-	 * // Restful API 게시물 하나 로드
-	 * 
-	 * @RequestMapping(value = "/board2/{bbsID}", method = RequestMethod.GET) public
-	 * Map<String, Object> detailBoard(@PathVariable int bbsID) { Map<String,
-	 * Object> result = new HashMap<>(); BoardVO vo = boardservice.viewBoard(bbsID);
-	 * result.put("list", vo); result.put("result", Boolean.TRUE); return result; }
-	 * 
-	 * // Restful API 게시물 작성
-	 * 
-	 * @RequestMapping(value = "/board2", method = RequestMethod.POST, headers = {
-	 * "Content-type=application/json" }) public Map<String, Object>
-	 * addBoard(@RequestBody BoardVO boardvo, HttpSession session) { String id =
-	 * (String) session.getAttribute("userID"); boardvo.setUserID(id); Map<String,
-	 * Object> result = new HashMap<>(); if (boardvo != null)
-	 * boardservice.insertBoard(boardvo);
-	 * 
-	 * result.put("result", Boolean.TRUE); return result; }
-	 * 
-	 * // Restful API 게시물 수정
-	 * 
-	 * @RequestMapping(value = "/board2", method = RequestMethod.PUT, headers = {
-	 * "Content-type=application/json" }) public Map<String, Object>
-	 * updateBoard(@RequestBody BoardVO boardvo) { Map<String, Object> result = new
-	 * HashMap<>(); System.out.println(boardvo.getBbsTitle()); if (boardvo != null)
-	 * boardservice.updateBoard(boardvo);
-	 * 
-	 * result.put("result", Boolean.TRUE); return result; }
-	 * 
-	 * // Restful API 게시물 삭제
-	 * 
-	 * @RequestMapping(value = "/board2/{bbsID}", method = RequestMethod.DELETE)
-	 * public Map<String, Object> deleteBoard(@PathVariable int bbsID) { Map<String,
-	 * Object> result = new HashMap<>();
-	 * 
-	 * boardservice.deleteBoard(bbsID); result.put("result", Boolean.TRUE); return
-	 * result; }
-	 */
+	// 회원가입 id 중복 체크
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+	public Map<String, Object> checkUserId(@PathVariable String id) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		if (userservice.checkUserId(id))
+			result.put("result", Boolean.TRUE); // 사용 가능
+		else
+			result.put("result", Boolean.FALSE); // 사용 불가
+		return result;
+	}
+
+	// 로그인
+	@RequestMapping(value = "/login", method = RequestMethod.POST, headers = { "Content-type=application/json" })
+	public Map<String, Object> loginUser(@RequestBody UserVO uservo, HttpSession session) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		if (userservice.loginUser(uservo)) {
+			session.setAttribute("id", uservo.getId());
+			result.put("result", Boolean.TRUE); // 로그인 성공
+			result.put("id", uservo.getId()); // 로그인 성공
+			
+		}
+		else
+			result.put("result", Boolean.FALSE); // 로그인 실패
+		return result;
+	}
+
+	// 로그아웃
+	@RequestMapping(value = "/logout")
+	public Map<String, Object> logoutUser(@RequestBody UserVO uservo, HttpSession session) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		session.invalidate();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+
+	// 회원정보 수정
+	@RequestMapping(value = "/user", method = RequestMethod.PUT, headers = { "Content-type=application/json" })
+	public Map<String, Object> updateBoard(@RequestBody UserVO uservo) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		userservice.updateUser(uservo);
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+
+	// 회원탈퇴
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+	public Map<String, Object> deleteBoard(@PathVariable String id) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		userservice.deleteUser(id);
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+
 }

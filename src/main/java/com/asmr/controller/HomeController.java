@@ -20,30 +20,21 @@ public class HomeController {
 	
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		//UserVO user = new UserVO("sibal", "sibal");
-		//userservice.insertjpaUser(user);	
-		return "main_join";
+		return "main_layout";
 	}
 	
 	@RequestMapping(value = "/v/login")
 	public String login() {
-		//UserVO user = new UserVO("sibal", "sibal");
-		//userservice.insertjpaUser(user);	
 		return "main_login";
 	}
 	
 	@RequestMapping(value = "/v/join")
 	public String join() {
-		//UserVO user = new UserVO("sibal", "sibal");
-		//userservice.insertjpaUser(user);	
 		return "main_join";
 	}
 	
 	@RequestMapping(value = "/v/update")
 	public String update() {
-		//UserVO user = new UserVO("sibal", "sibal");
-		//userservice.insertjpaUser(user);	
-		return "main_udpate";
+		return "main_update";
 	}
 }

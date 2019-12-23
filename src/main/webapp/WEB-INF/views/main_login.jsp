@@ -15,60 +15,92 @@
 
 <link rel='stylesheet'
 	href='http://fonts.googleapis.com/earlyaccess/nanumpenscript.css'>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css">
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/login.css">
 
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<title>로그인</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-//회원가입 액션 POST
-$(document).ready(function() {
-	$("#btnSubmit").click(function() {
-		var form = {
-			id : $('#id').val(),
-			pw : $('#pw').val()
-		};
-		$.ajax({
-			type : "POST",
-			data : form,
-			url : "${path}/user/jpa/add",
-			success : function(data) {
-				if (data.result == true) {
-					location.href = '${path}/'
-				}
-				
-			},
-			error : function(error) {
-				alert(error);
+	// 회원가입 이동
+	$(document).ready(function() {
+		$("#btnJoin").click(function() {
+			location.href = '${path}/v/join'
+		});
+	});
+	// 회원정보수정 이동
+	$(document).ready(function() {
+		$("#btnUpdate").click(function() {
+			location.href = '${path}/v/update'
+		});
+	});
+	// 로그인
+	$(document).ready(function() {
+		$("#btnLogin").click(function() {
+			if ($('#id').val().length < 1)
+				alert('아이디 미입력');
+			else if ($('#pw').val().length < 1)
+				alert('페스워드 미입력');
+			else {
+				var id = $('#id').val();
+				var pw = $('#pw').val();
+				$.ajax({
+					type : "POST",
+					data : JSON.stringify({
+						id : id,
+						pw : pw
+					}),
+					url : "${path}/login",
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(response) {
+						if (response.result == true)
+							location.href = '${path}/'
+						else
+							alert('로그인 실패');
+					},
+					error : function(error) {
+						alert(error);
+					}
+				});
 			}
 		});
 	});
-});
 </script>
-<title>로그인</title>
 </head>
-
 <body>
-
-	<h2>회원등록</h2>
-	<form name="form1" method="post">
-		<table border="1" width="400px">
-			<tr>
-				<td>아이디</td>
-				<td><input id="id" name="id"></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" id="pw" name="pw"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-				<input type="button"
-					value="아이디 중복 체크" id="btnSubmit"> 
-					<input type="button"
-					value="리셋" id="btnReset">  
-					<input type="submit" value="가입"> <input
-					type="reset" value="취소">
-			</tr>
-		</table>
-	</form>
+	<div class="container">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<div class="jumbotron" style="padding-top: 20px;">
+				<form name="form">
+					<h3 style="text-align: center;">회원가입 화면</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디" id="id"
+							name="id" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호"
+							id="pw" name="pw" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="button" id="btnJoin"
+							class="btn btn-primary form-control" value="회원가입">
+					</div>
+					<div class="form-group">
+						<input type="button" id="btnUpdate"
+							class="btn btn-primary form-control" value="회원정보수정">
+					</div>
+					<div class="form-group">
+						<input type="button" id="btnLogin"
+							class="btn btn-primary form-control" value="로그인">
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-lg-4"></div>
+	</div>
 </body>
 </html>

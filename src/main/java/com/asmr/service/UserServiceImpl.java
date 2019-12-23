@@ -17,14 +17,32 @@ public class UserServiceImpl implements UserService {
 	public void insertUser(UserVO uservo) {
 		userrepository.insertUser(uservo);
 	}
-	
-	//public void selectUser() {
-		//userrepository.insertUser(uservo);
-	//}
 
 	@Override
 	@Transactional
-	public UserVO checkUser(String id) {
-		return userrepository.checkUser(id);
+	public boolean checkUserId(String id) {
+		if (userrepository.checkUserId(id) == null)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	@Transactional
+	public boolean loginUser(UserVO uservo) {
+		UserVO temp = userrepository.loginUser(uservo);
+		return uservo.getPw().equals(temp.getPw());
+	}
+
+	@Override
+	@Transactional
+	public void updateUser(UserVO uservo) {
+		userrepository.updateUser(uservo);
+	}
+
+	@Override
+	@Transactional
+	public void deleteUser(String id) {
+		userrepository.deleteUser(id);
 	}
 }

@@ -39,11 +39,10 @@
 						if (confirmid == true) {
 							alert("회원가입 버튼을 눌러주세요.")
 							flag = true;
-						}
-						else {
+						} else {
 							alert("사용하실 다른 id를 입력해주세요.")
 							flag = false;
-						} 		
+						}
 					} else {
 						alert('이미 존재하는 아이디입니다.\n 사용하실 다른 id를 입력해주세요.');
 						flag = false;

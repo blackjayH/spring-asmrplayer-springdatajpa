@@ -15,7 +15,8 @@
 
 <link rel='stylesheet'
 	href='http://fonts.googleapis.com/earlyaccess/nanumpenscript.css'>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css">
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/login.css">
 
 <title>회원 정보 수정</title>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -23,27 +24,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-	// 삭제
-	$(document).ready(function() {
-		$("#btnDelete").click(function() {
-			if ($('#id').val().length < 1)
-				alert('아이디 미입력');
-			var id = $('#id').val();
-			$.ajax({
-				type : "DELETE",
-				url : "${path}/user/" + id,
-				success : function(response) {
-					if (response.result == true) 
-						location.href = '${path}/v/login'
-					else 
-						alert('삭제 실패');
-				},
-				error : function(error) {
-					alert(error);
-				}
-			});
-		});
-	});
 	// 수정 
 	$(document).ready(function() {
 		$("#btnUpdate").click(function() {
@@ -75,6 +55,27 @@
 
 				});
 			}
+		});
+	});
+	// 삭제
+	$(document).ready(function() {
+		$("#btnDelete").click(function() {
+			if ($('#id').val().length < 1)
+				alert('아이디 미입력');
+			var id = $('#id').val();
+			$.ajax({
+				type : "DELETE",
+				url : "${path}/user/" + id,
+				success : function(response) {
+					if (response.result == true)
+						location.href = '${path}/v/login'
+					else
+						alert('삭제 실패');
+				},
+				error : function(error) {
+					alert(error);
+				}
+			});
 		});
 	});
 </script>

@@ -22,12 +22,16 @@
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/mainIE.css">
 <!--[endif]-->
+ <c:import url="main_audio.jsp" charEncoding="UTF-8"></c:import>
+
+
+
+
+
 
 <title>main</title>
 
 <script src="http://code.jquery.com/jquery-latest.js">
-	var form = document.getElementById('logout');
-	form.style.display = "";
 </script>
 
 
@@ -81,6 +85,7 @@
 					<option>3</option>
 				</select>
 				<ul>
+					<li><a href="javascript:playall()">전체 재생</a></li>
 					<li><a href="javascript:reset()">리셋</a></li>
 					<li><a href="javascript:ajaxLoad()">불러오기</a></li>
 					<li><a href="javascript:ajaxSave()">저장</a></li>

@@ -12,75 +12,73 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>asmr player</title>
 </head>
 <body bgcolor="black">
-
 	<!--  이하 각 재생 버튼 아이콘들   -->
 	<!--  play(x)로 이벤트 연결 x가 10의 배수인 이유는 나중에 벌레소리(10) 벌레소리2(11)등으로 분류하기 위해 -->
 
 	<!-- 각 소리당 재생은 1개씩만 하므로 볼륨슬라이더는 10개만 할당  -->
 	<!-- /1.비 /10.벌레 /20.바람 /30.번개 /40.끓는소리 /50.새 /60.불 /70.파도 /80.사람 /90.TV -->
 
-
 	<audio id="audio0" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-rain.ogg' type="audio/ogg" /> <source
-		src='${path}/mp4/main-rain.mp4' type="audio/mpeg" />
+		src='${path}/resources/mp4/main-rain.ogg' type="audio/ogg" /> <source
+		src='${path}/resources/mp4/main-rain.mp4' type="audio/mpeg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 
 	<audio id="audio1" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-crickets.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-crickets.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-crickets.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-crickets.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio2" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-wind.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-wind.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-wind.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-wind.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio3" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-thunder.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-thunder.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-thunder.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-thunder.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio4" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-sbowl.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-sbowl.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-sbowl.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-sbowl.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio5" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-birds.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-birds.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-birds.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-birds.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio6" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-fire.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-fire.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-fire.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-fire.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio7" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-waves.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-waves.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-waves.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-waves.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio8" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-people.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-people.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-people.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-people.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
 	<audio id="audio9" loop="loop" preload="auto"> <source
-		src='${path}/mp4/main-tv.mp4' type="audio/mpeg" /> <source
-		src='${path}/mp4/main-tv.ogg' type="audio/ogg" />
+		src='${path}/resources/mp4/main-tv.mp4' type="audio/mpeg" /> <source
+		src='${path}/resources/mp4/main-tv.ogg' type="audio/ogg" />
 	<p>죄송합니다. 지금 사용하고 계신 브라우저가 audio 태그를 지원하지 않습니다.</p>
 	</audio>
 
@@ -98,7 +96,7 @@
 			var aud = document.getElementById("audio1");
 			alert(aud.src);
 			aud.pause();
-			aud.src = '${path}/mp4/main-tv.mp4'; /// 나중에 소리 바꾸기용 테스트
+			aud.src = '${path}/resources/audio/main-tv.mp4'; /// 나중에 소리 바꾸기용 테스트
 			alert(aud.src);
 			aud.load();
 			aud.play();
@@ -109,7 +107,7 @@
 			var aud = document.getElementById("audio" + audio_num);
 			var src=null;
 			
-			src = "${path}/mp4/"+num+".mp4";
+			src = "${path}/resources/audio/"+num+".mp4";
 			aud.src = src;
 			if (AudioFlag[audio_num]!=num) {
 				if (AudioFlag[audio_num] == 0)
@@ -127,7 +125,7 @@
 				playnum--;
 				if (playnum == 0) {
 					var all = document.getElementById("play_icon");
-					all.src = '${path}/image/play.png';
+					all.src = '${path}/resources/image/play.png';
 					AudioFlag[10] = 0;
 				}
 				AudioFlag[audio_num] = 0;
@@ -144,7 +142,7 @@
 			if (AudioFlag[10] == 0 && playnum != 0) {
 				AudioFlag[10] = 1;
 				var all = document.getElementById("play_icon");
-				all.src = '${path}/image/pause.png';
+				all.src = '${path}/resources/image/pause.png';
 				for (var i = 0; i < 10; i++) {
 					if (AudioFlag[i] != 0) {
 						var aud = document.getElementById("audio" + i);
@@ -154,7 +152,7 @@
 			} else {
 				AudioFlag[10] = 0;
 				var all = document.getElementById("play_icon");
-				all.src = '${path}/image/play.png';
+				all.src = '${path}/resources/image/play.png';
 				for (var i = 0; i < 10; i++) {
 					var aud = document.getElementById("audio" + i);
 					aud.pause();
@@ -178,119 +176,11 @@
 			}
 			//alert("리셋");
 			var all = document.getElementById("play_icon");
-			all.src = '${path}/image/play.png';
+			all.src = '${path}/resources/image/play.png';
 			AudioFlag[10] = 0;
 			playnum = 0;
 		}
 		
-		function ajaxSave() {
-	<%//AudioDTO forID = (AudioDTO) request.getServletContext().getAttribute("dto");
-	AudioDTO forID = (AudioDTO) request.getSession().getAttribute("dto");
-			String userid = null;
-			if (forID != null)
-				userid = forID.getId(); //ID식별 TEST용%>
-			
-			var id = "<%=userid%>";
-			//alert(id +"/");
-			if(id != null && id != "null"){
-				var ArrayData = new Array();
-				var slot = $('[name="Slot"]').val();
-				if(slot==1||slot==2||slot==3){
-					for (var i = 0; i < 10; i++) {
-						var aud = document.getElementById("audio" + i);
-						var Data = new Object();
-						Data.AudioNum = AudioFlag[i];
-						Data.volume = aud.volume;
-						Data.slot = slot;
-						ArrayData.push(Data);
-					}
-					var json_data = {
-						jsondata : JSON.stringify(ArrayData)
-					}
-					$.ajax({
-						url : '/WebProject/WebControl?action=save',
-						type : 'POST',
-						data : json_data,
-						datatype : "json",
-						success : function(data) {
-							alert(slot + "번째 슬롯에 저장되었습니다.");
-							//window.opener.location.reload();
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							alert("save 에러 발생 \n" + textStatus + " : " + errorThrown);
-							// self.close();
-						}
-					});
-				}
-				
-			}
-			else{
-				alert("로그인 해주세요.");
-			}
-			
-		}
-		function ajaxLoad() {
-			<%//forID = (AudioDTO) request.getServletContext().getAttribute("dto");
-			forID = (AudioDTO) request.getSession().getAttribute("dto");
-			userid = null;
-			if (forID != null)
-				userid = forID.getId(); //ID식별 TEST용%>
-			
-			var id = "<%=userid%>";
-			if (id != null && id != "null") {
-				var ArrayData = new Array();
-				var slot = $('[name="Slot"]').val();
-				if (slot == 1 || slot == 2 || slot == 3) {
-					var Data = new Object();
-					Data.slot = slot
-					ArrayData.push(Data);
-					var json_data = {
-						jsondata : JSON.stringify(ArrayData)
-					}
-					$
-							.ajax({
-								url : '/WebProject/WebControl?action=load',
-								type : 'POST',
-								data : json_data,
-								datatype : "json",
-								success : function(result) {
-									var ar = result;
-									if (ar.length > 0) {
-										reset();
-										for (var i = 0; i < ar.length; i++) {
-											if (ar[i].track != 0) {
-												var track = parseInt(ar[i].track / 10);
-												var aud = document
-														.getElementById("audio"
-																+ track);
-												var vol = document
-														.getElementById("volumeslider"
-																+ track);
-												var volume = ar[i].volume;
-												play(ar[i].track,
-														(".menu" + (i + 1)));
-												aud.volume = volume;
-												vol.value = volume * 10;
-											}
-										}
-										 
-										
-										//	window.opener.location.reload();
-									} else {
-										alert("저장된 데이터가 없습니다.");
-									}
-								},
-								error : function(jqXHR, textStatus, errorThrown) {
-									alert("load 에러 발생 \n" + textStatus + " : "
-											+ errorThrown);
-									// self.close();
-								}
-							});
-				}
-			} else {
-				alert("로그인 해주세요.");
-			}
-		}
 		/*사이드바 플레이목록 추가 삭제*/
 		function add(menu) {
 			$(menu).show("slow");
@@ -373,4 +263,3 @@
 		}
 	</script>
 </body>
-</html>

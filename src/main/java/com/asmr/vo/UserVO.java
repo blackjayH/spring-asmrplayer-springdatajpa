@@ -15,9 +15,9 @@ public class UserVO { // 유저
 	private String pw;
 
 	protected UserVO() {
-		
+
 	}
-	
+
 	protected UserVO(String id, String pw) {
 		this.id = id;
 		this.pw = pw;

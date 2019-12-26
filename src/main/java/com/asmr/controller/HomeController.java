@@ -17,22 +17,25 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	UserService userservice;
-	
+
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
 		return "main_layout";
 	}
-	
+
+	// 로그인 view
 	@RequestMapping(value = "/v/login")
 	public String login() {
 		return "main_login";
 	}
-	
+
+	// 회원가입 view
 	@RequestMapping(value = "/v/join")
 	public String join() {
 		return "main_join";
 	}
-	
+
+	// 회원정보 수정view
 	@RequestMapping(value = "/v/update")
 	public String update() {
 		return "main_update";

@@ -9,8 +9,7 @@ import com.asmr.vo.AudioVO;
 
 @Repository
 public class AudioRepositoryImpl implements AudioRepository {
-	@PersistenceContext
-	EntityManager em;
+	
 
 	@Override
 	public void insertAudio(AudioVO audiovo) {

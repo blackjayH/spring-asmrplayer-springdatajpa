@@ -1,5 +1,7 @@
 package com.asmr.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,19 +15,19 @@ public class AudioServiceImpl implements AudioService {
 	AudioRepository audiorepository;
 
 	@Override
-	@Transactional
+	
 	public void insertAudio(AudioVO audiovo) {
 		audiorepository.insertAudio(audiovo);
 	}
 
 	@Override
-	@Transactional
+	
 	public void updateAudio(AudioVO audiovo) {
 		audiorepository.updateAudio(audiovo);
 	}
 
 	@Override
-	@Transactional
+	
 	public void deleteAudio(AudioVO audiovo) {
 		audiorepository.deleteAudio(audiovo);
 

@@ -60,7 +60,7 @@ public class AudioVO {
 	public void setVolume(float volume) {
 		this.volume = volume;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Audio [id=" + id + ", slot=" + slot + ", track=" + track + ", volume=" + volume + "]";

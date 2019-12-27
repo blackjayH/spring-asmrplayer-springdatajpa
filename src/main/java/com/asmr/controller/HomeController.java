@@ -1,12 +1,17 @@
 package com.asmr.controller;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.asmr.service.UserService;
@@ -27,6 +32,13 @@ public class HomeController {
 	@RequestMapping(value = "/v/login")
 	public String login() {
 		return "main_login";
+	}
+
+	// 로그아웃
+	@RequestMapping(value = "/v/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "main_layout";
 	}
 
 	// 회원가입 view

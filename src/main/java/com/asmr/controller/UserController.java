@@ -50,20 +50,10 @@ public class UserController {
 		if (userservice.loginUser(uservo)) {
 			session.setAttribute("id", uservo.getId());
 			result.put("result", Boolean.TRUE); // 로그인 성공
-			result.put("id", uservo.getId()); // 로그인 성공
-			
+			result.put("id", uservo.getId()); // 로그인 성공	
 		}
 		else
 			result.put("result", Boolean.FALSE); // 로그인 실패
-		return result;
-	}
-
-	// 로그아웃
-	@RequestMapping(value = "/logout")
-	public Map<String, Object> logoutUser(@RequestBody UserVO uservo, HttpSession session) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		session.invalidate();
-		result.put("result", Boolean.TRUE);
 		return result;
 	}
 

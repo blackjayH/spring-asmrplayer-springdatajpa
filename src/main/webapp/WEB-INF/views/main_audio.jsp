@@ -1,4 +1,4 @@
-  
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -90,26 +90,31 @@
 		var AudioFlag = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]; //11번째는 AllPlay제어용 음원을 분류하여 나중에 Ajax로 보냄
 		var playnum = 0; // 현재 재생되고 있는 음원 수
 		var timerID; // 타이머용 전역변수
-		var sec =0; // 타이머용 초
-	
+		var sec = 0; // 타이머용 초
+
+		function sleep(seconds) {
+			var waitUntil = new Date().getTime() + seconds;
+			while (new Date().getTime() < waitUntil)
+				true;
+		}
+		
 		function testing() {
 			var aud = document.getElementById("audio1");
 			alert(aud.src);
 			aud.pause();
-			aud.src = '${path}/resources/audio/main-tv.mp4'; /// 나중에 소리 바꾸기용 테스트
+			aud.src = '${path}/resources/audio/main-tv.mp4'; // 테스트
 			alert(aud.src);
 			aud.load();
 			aud.play();
 		}
-		// 해당 mp4파일 재생
-		function play(num,menu) {   //////// num에 해당하는 mp4파일을 가져와서 재생.
+		// 개별 mp4파일 재생
+		function play(num, menu) { //////// num에 해당하는 mp4파일을 가져와서 재생.
 			var audio_num = parseInt(num / 10);
 			var aud = document.getElementById("audio" + audio_num);
-			var src=null;
-			
-			src = "${path}/resources/audio/"+num+".mp4";
+			var src = null;
+			src = "${path}/resources/audio/" + num + ".mp4";
 			aud.src = src;
-			if (AudioFlag[audio_num]!=num) {
+			if (AudioFlag[audio_num] != num) {
 				if (AudioFlag[audio_num] == 0)
 					playnum++;
 				if (AudioFlag[10] == 0)
@@ -131,14 +136,16 @@
 				AudioFlag[audio_num] = 0;
 			}
 		}
+			
 		// 음량 선택
 		function setvolume(num) {
 			var aud = document.getElementById("audio" + num);
 			var vol = document.getElementById("volumeslider" + num);
 			aud.volume = vol.value / 10;
 		}
-		// 전체 재생
-		function playall() {
+		
+		// 전체 일시 정지/재생
+		function pauseall() {
 			if (AudioFlag[10] == 0 && playnum != 0) {
 				AudioFlag[10] = 1;
 				var all = document.getElementById("play_icon");
@@ -159,11 +166,8 @@
 				}
 			}
 		}
-		
-		function sleep(seconds){
-		    var waitUntil = new Date().getTime() + seconds;
-		    while(new Date().getTime() < waitUntil) true;
-		}
+
+		// 현재 재생 목록 리셋
 		function reset() {
 			for (var i = 0; i < 10; i++) {
 				var aud = document.getElementById("audio" + i);
@@ -171,23 +175,63 @@
 				aud.pause();
 				aud.volume = 1;
 				AudioFlag[i] = 0;
-				remove(".menu"+(i+1));
+				remove(".menu" + (i + 1));
 				vol.value = 100;
 			}
-			//alert("리셋");
 			var all = document.getElementById("play_icon");
 			all.src = '${path}/resources/image/play.png';
 			AudioFlag[10] = 0;
 			playnum = 0;
+		}
+
+		// 재생 목록 저장
+		function ajaxSave() {
+			var ArrayData = new Array();
+			var slot = $('[name="Slot"]').val();
+			if (!slot)
+				alert('저장 슬롯을 선택해주세요');
+			if (slot == 1 || slot == 2 || slot == 3) {
+				for (var i = 0; i < 10; i++) {
+					var aud = document.getElementById("audio" + i);
+					var Data = new Object();
+					Data.track = AudioFlag[i];
+					Data.volume = aud.volume;
+					Data.slot = slot;
+					ArrayData.push(Data);
+				}
+				$.ajax({
+					type : 'POST',
+					data : JSON.stringify(ArrayData),
+					url : "${path}/audio",
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(response) {
+						if (response.result == true)
+							alert(slot + "번째 슬롯에 저장되었습니다.");
+						else
+							alert('저장 실패');
+					},
+					error : function(error) {
+						alert(error);
+					}
+				});
+			}
+		}
+
+		// 재생 목록 로드
+		function ajaxLoad() {
+			
 		}
 		
 		/*사이드바 플레이목록 추가 삭제*/
 		function add(menu) {
 			$(menu).show("slow");
 		}
+		
 		function remove(menu) {
 			$(menu).hide("slow");
 		}
+		
 		/*아이콘에 마우스 오버 시 오디오 리스트 보임 */
 		function hide_list(sub_list) {
 			var sublist = $(sub_list);
@@ -197,6 +241,7 @@
 				sublist.slideDown();
 			}
 		}
+		
 		/*전체화면이 아닐때 로그인 버튼 숨기기*/
 		$(window).resize(function() {
 			var windowWidth_ = $(window).width();
@@ -206,15 +251,8 @@
 				$('login').show("slow");
 			}
 		});
-		function logout() {
-			var form = document.createElement("form");
-			form.setAttribute("charset", "UTF-8");
-			form.setAttribute("method", "Post");
-			form.setAttribute("action", "/WebProject/WebControl?action=logout");
-			document.body.appendChild(form);
-			form.submit();
-		}
-		// 타이머 세팅
+		
+		// 타이머 셋팅
 		function timer() {
 			timerID = setInterval("decrementTime()", 1000);
 			var form = document.getElementById('t_field');
@@ -222,6 +260,7 @@
 			var form2 = document.getElementById('t_setting');
 			form2.style.display = "none";
 		}
+		
 		// 타이머 시작
 		function decrementTime() {
 			var x1 = document.getElementById("t_time");
@@ -244,10 +283,12 @@
 				sec--;
 			$('.t_field').text(x1.value + "시간 " + x2.value + "분 " + sec);
 		}
+		
 		// 타이머 정지
 		function stoptimer() {
 			clearInterval(timerID);
 		}
+		
 		// 타이머 리셋
 		function resettimer() {
 			clearInterval(timerID);

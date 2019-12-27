@@ -18,26 +18,35 @@
 	href='http://fonts.googleapis.com/earlyaccess/nanumpenscript.css'>
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/main.css">
-<!--[if !ie]>-->
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/mainIE.css">
-<!--[endif]-->
- <c:import url="main_audio.jsp" charEncoding="UTF-8"></c:import>
+<c:import url="main_audio.jsp" charEncoding="UTF-8"></c:import>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js">
+	
+</script>
+<script type="text/javascript"></script>
+<c:if test="${id eq null}">
+	<a href="${path}/v/login" id="login" style=""> <login class="login">로그인</login>
+	</a>
 
+	<a href="${path}/v/logout" id="logout" style="display: none;"> <login
+			class="login">로그아웃</login>
+	</a>
+</c:if>
 
-
-
-
+<c:if test="${id ne null}">
+	<a href="${path}/v/login" id="login" style="display: none;"> <login
+			class="login">로그인</login>
+	</a>
+	<a href="${path}/v/logout" id="logout" style=""> <login
+			class="login">로그아웃</login>
+	</a>
+</c:if>
 
 <title>main</title>
-
-<script src="http://code.jquery.com/jquery-latest.js">
-</script>
-
-
 </head>
-</head>
-<body>
 <body>
 	<div class="timer">
 		<P>타이머</P>
@@ -62,12 +71,6 @@
 		</nav>
 	</div>
 
-	<a href="${path}/v/login" id="login" > <login class="login">로그인</login>
-	</a>
-
-	<a href="${path}/logout" id="logout" style="display: none;"> <login
-			class="login">로그아웃</login>
-	</a>
 
 
 	<div class="wrapper1">
@@ -85,16 +88,17 @@
 					<option>3</option>
 				</select>
 				<ul>
-					<li><a href="javascript:playall()">전체 재생</a></li>
+					<li><a href="javascript:pauseall()">전체 재생</a></li>
 					<li><a href="javascript:reset()">리셋</a></li>
-					<li><a href="javascript:ajaxLoad()">불러오기</a></li>
-					<li><a href="javascript:ajaxSave()">저장</a></li>
+					<c:if test="${id ne null}">
+						<li><a href="javascript:ajaxLoad()">재생목록로드</a></li>
+						<li><a href="javascript:ajaxSave()">재생목록저장</a></li>
+					</c:if>
 				</ul>
 				</hBtn>
 
 			</div>
 			<div class="sidebar">
-
 				<div class="menu1" id="sidebar" style="display: none;">
 					<div class="outer">
 						<div1 class="inner"> <a href="javascript:play(1,'.menu1');"><label>remove</label>
@@ -103,7 +107,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/rain.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu2" id="sidebar" style="display: none;">
@@ -115,7 +118,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/grass.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu3" id="sidebar" style="display: none;">
@@ -127,7 +129,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/wind.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu4" id="sidebar" style="display: none;">
@@ -139,7 +140,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/storm.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu5" id="sidebar" style="display: none;">
@@ -151,7 +151,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/singing-bowl.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu6" id="sidebar" style="display: none;">
@@ -163,7 +162,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/dove.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu7" id="sidebar" style="display: none;">
@@ -175,7 +173,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/bonfire.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu8" id="sidebar" style="display: none;">
@@ -187,7 +184,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/wave.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu9" id="sidebar" style="display: none;">
@@ -199,7 +195,6 @@
 					<div id="side">
 						<img src="${path}/resources/image/coffee-cup.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
 				<div class="menu10" id="sidebar" style="display: none;">
@@ -211,16 +206,12 @@
 					<div id="side">
 						<img src="${path}/resources/image/television.png" width="70%"
 							height="auto" align="center"> </a>
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 
-
 		<div class="wrapper">
-
 			<div class="panel">
 				<img id="icon0" src="${path}/resources/image/rain.png" width="100"
 					height="100" onclick="play(1,'.menu1')"
@@ -241,7 +232,6 @@
 					onmouseenter="hide_list('.hide2')"> <input class="slider"
 					id="volumeslider1" type="range" min="0" max="10" value="100"
 					step="1" onclick="setvolume(1)">
-
 				<ul class="hide2">
 					<li><a href="javascript:play(11,'.menu2');"> #1</a></li>
 					<li><a href="javascript:play(12,'.menu2');"> #2</a></li>
@@ -261,7 +251,6 @@
 					<li><a href="javascript:play(23,'.menu3');"> #3</a></li>
 					<li><a href="javascript:play(24,'.menu3');"> #4</a></li>
 				</ul>
-
 			</div>
 			<div class="panel">
 				<img id="icon30" src="${path}/resources/image/storm.png" width="100"
@@ -275,7 +264,6 @@
 					<li><a href="javascript:play(33,'.menu4');"> #3</a></li>
 					<li><a href="javascript:play(34,'.menu4');"> #4</a></li>
 				</ul>
-
 			</div>
 			<div class="panel">
 				<img id="icon40" src="${path}/resources/image/singing-bowl.png"
@@ -289,7 +277,6 @@
 					<li><a href="javascript:play(43,'.menu5');"> #3</a></li>
 					<li><a href="javascript:play(44,'.menu5');"> #4</a></li>
 				</ul>
-
 			</div>
 			<div class="panel">
 				<img id="icon50" src="${path}/resources/image/dove.png" width="100"
@@ -303,7 +290,6 @@
 					<li><a href="javascript:play(53,'.menu6');"> #3</a></li>
 					<li><a href="javascript:play(54,'.menu6');"> #4</a></li>
 				</ul>
-
 			</div>
 			<div class="panel">
 				<img id="icon60" src="${path}/resources/image/bonfire.png"
@@ -317,21 +303,19 @@
 					<li><a href="javascript:play(63,'.menu7');"> #3</a></li>
 					<li><a href="javascript:play(64,'.menu7');"> #4</a></li>
 				</ul>
-
 			</div>
 			<div class="panel">
-				<img id="icon70" src="${path}/resources/image/wave.png"
-					style="cursor: pointer" width="100" height="100"
-					onclick="play(70,'.menu8')" onmouseenter="hide_list('.hide8')">
-				<input class="slider" id="volumeslider7" type="range" min="0"
-					max="10" value="100" step="1" onclick="setvolume(7)">
+				<img id="icon70" src="${path}/resources/image/wave.png" width="100"
+					height="100" onclick="play(70,'.menu8')"
+					onmouseenter="hide_list('.hide8')"> <input class="slider"
+					id="volumeslider7" type="range" min="0" max="10" value="100"
+					step="1" onclick="setvolume(7)">
 				<ul class="hide8">
 					<li><a href="javascript:play(71,'.menu8');"> #1</a></li>
 					<li><a href="javascript:play(72,'.menu8');"> #2</a></li>
 					<li><a href="javascript:play(73,'.menu8');"> #3</a></li>
 					<li><a href="javascript:play(74,'.menu8');"> #4</a></li>
 				</ul>
-
 			</div>
 			<div class="panel">
 				<img id="icon80" src="${path}/resources/image/coffee-cup.png"
@@ -345,7 +329,6 @@
 					<li><a href="javascript:play(83,'.menu9');"> #3</a></li>
 					<li><a href="javascript:play(84,'.menu9');"> #4</a></li>
 				</ul>
-
 			</div>
 			<div class="panel">
 				<img id="icon90" src="${path}/resources/image/television.png"
@@ -359,21 +342,13 @@
 					<li><a href="javascript:play(93,'.menu10');"> #3</a></li>
 					<li><a href="javascript:play(94,'.menu10');"> #4</a></li>
 				</ul>
-
 			</div>
-
 			<div class="panel"></div>
 			<div class="panel"></div>
 			<div class="panel"></div>
 			<div class="panel"></div>
-
 		</div>
-		<footer class="footer"> WEB Project -워낭소리</footer>
-
-
-
+		<footer class="footer">asmr player</footer>
 	</div>
-
-
 </body>
 </html>

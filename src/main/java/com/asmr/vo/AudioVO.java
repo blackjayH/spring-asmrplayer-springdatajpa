@@ -3,18 +3,28 @@ package com.asmr.vo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "audio")
+@Table(name = "audiolist")
+@IdClass(AudioVOKey.class)
 public class AudioVO {
 	@Id
-	@Column(name = "id")
-	String id;
+	@Column(name = "userid")
+	String userid;
+
+	@Id
+	@Column(name = "musicnumber")
+	int musicnumber;
+
+	@Id
 	@Column(name = "slot")
 	int slot;
+
 	@Column(name = "track")
 	int track;
+
 	@Column(name = "volume")
 	float volume;
 
@@ -22,19 +32,20 @@ public class AudioVO {
 
 	}
 
-	protected AudioVO(String id, int slot, int track, float volume) {
-		this.id = id;
+	protected AudioVO(String userid, int slot, int musicnumber, int track, float volume) {
+		this.userid = userid;
 		this.slot = slot;
+		this.musicnumber = musicnumber;
 		this.track = track;
 		this.volume = volume;
 	}
 
-	public String getId() {
-		return id;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public int getSlot() {
@@ -43,6 +54,14 @@ public class AudioVO {
 
 	public void setSlot(int slot) {
 		this.slot = slot;
+	}
+
+	public int getMusicnumber() {
+		return musicnumber;
+	}
+
+	public void setMusicnumber(int musicnumber) {
+		this.musicnumber = musicnumber;
 	}
 
 	public int getTrack() {
@@ -63,6 +82,7 @@ public class AudioVO {
 
 	@Override
 	public String toString() {
-		return "Audio [id=" + id + ", slot=" + slot + ", track=" + track + ", volume=" + volume + "]";
+		return "Audio [userid=" + userid + ", slot=" + slot + ", musicnumber=" + musicnumber + ", track=" + track + ", volume="
+				+ volume + "]";
 	}
 }

@@ -77,7 +77,7 @@
 		<div class="wrapper2">
 
 			<div class="header">
-				<a><img id="play_icon" onclick='playall()'
+				<a><img id="play_icon" onclick='pauseall()'
 					src="${path}/resources/image/play.png" width="150px" height="auto"
 					align="center"></a>
 

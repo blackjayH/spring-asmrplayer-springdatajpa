@@ -97,7 +97,7 @@
 			while (new Date().getTime() < waitUntil)
 				true;
 		}
-		
+
 		function testing() {
 			var aud = document.getElementById("audio1");
 			alert(aud.src);
@@ -118,7 +118,7 @@
 				if (AudioFlag[audio_num] == 0)
 					playnum++;
 				if (AudioFlag[10] == 0)
-					playall();
+					pauseall();
 				aud.pause();
 				aud.load();
 				aud.play();
@@ -136,16 +136,18 @@
 				AudioFlag[audio_num] = 0;
 			}
 		}
-			
+
 		// 음량 선택
 		function setvolume(num) {
 			var aud = document.getElementById("audio" + num);
 			var vol = document.getElementById("volumeslider" + num);
 			aud.volume = vol.value / 10;
 		}
-		
+
 		// 전체 일시 정지/재생
 		function pauseall() {
+			if (playnum == 0)
+				alert('음악을 선택해주세요');
 			if (AudioFlag[10] == 0 && playnum != 0) {
 				AudioFlag[10] = 1;
 				var all = document.getElementById("play_icon");
@@ -194,6 +196,9 @@
 				for (var i = 0; i < 10; i++) {
 					var aud = document.getElementById("audio" + i);
 					var Data = new Object();
+					Data.userid = '<c:out value="${id}"/>';
+					;
+					Data.musicnumber = i;
 					Data.track = AudioFlag[i];
 					Data.volume = aud.volume;
 					Data.slot = slot;
@@ -220,18 +225,53 @@
 
 		// 재생 목록 로드
 		function ajaxLoad() {
-			
+			var slot = $('[name="Slot"]').val();
+			if (!slot)
+				alert('슬롯을 선택해주세요');
+			if (slot == 1 || slot == 2 || slot == 3) {
+				$.ajax({
+					type : "GET",
+					url : "${path}/audio/" + slot,
+					success : function(response) {
+						if (response.result == true) {
+							reset();
+							var ar = response.playList;
+							if (ar.length == 0)
+								alert('해당 슬롯에는 저장된 목록이 없습니다');
+							for (var i = 0; i < ar.length; i++) {
+								if (ar[i].track != 0) {
+									var track = parseInt(ar[i].track / 10);
+									var aud = document.getElementById("audio"
+											+ track);
+									var vol = document
+											.getElementById("volumeslider"
+													+ track);
+									var volume = ar[i].volume;
+									play(ar[i].track, (".menu" + (i + 1)));
+									aud.volume = volume;
+									vol.value = volume * 10;
+								}
+							}
+						}
+						else
+							alert('로드 실패');
+					},
+					error : function(error) {
+						alert(error);
+					}
+				});
+			}
 		}
-		
+
 		/*사이드바 플레이목록 추가 삭제*/
 		function add(menu) {
 			$(menu).show("slow");
 		}
-		
+
 		function remove(menu) {
 			$(menu).hide("slow");
 		}
-		
+
 		/*아이콘에 마우스 오버 시 오디오 리스트 보임 */
 		function hide_list(sub_list) {
 			var sublist = $(sub_list);
@@ -241,7 +281,7 @@
 				sublist.slideDown();
 			}
 		}
-		
+
 		/*전체화면이 아닐때 로그인 버튼 숨기기*/
 		$(window).resize(function() {
 			var windowWidth_ = $(window).width();
@@ -251,7 +291,7 @@
 				$('login').show("slow");
 			}
 		});
-		
+
 		// 타이머 셋팅
 		function timer() {
 			timerID = setInterval("decrementTime()", 1000);
@@ -260,7 +300,7 @@
 			var form2 = document.getElementById('t_setting');
 			form2.style.display = "none";
 		}
-		
+
 		// 타이머 시작
 		function decrementTime() {
 			var x1 = document.getElementById("t_time");
@@ -283,12 +323,12 @@
 				sec--;
 			$('.t_field').text(x1.value + "시간 " + x2.value + "분 " + sec);
 		}
-		
+
 		// 타이머 정지
 		function stoptimer() {
 			clearInterval(timerID);
 		}
-		
+
 		// 타이머 리셋
 		function resettimer() {
 			clearInterval(timerID);

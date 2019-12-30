@@ -1,4 +1,4 @@
-package com.asmr.controller;
+package com.asmr.web;
 
 import java.util.HashMap;
 import java.util.Map;

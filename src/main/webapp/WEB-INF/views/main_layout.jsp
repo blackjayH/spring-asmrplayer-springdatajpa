@@ -82,7 +82,7 @@
 					align="center"></a>
 
 				<hBtn class="button"> <select name="Slot">
-					<option selected>저장 슬롯</option>
+					<option selected>spring data jpa저장 슬롯</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>

@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.asmr.controller">
+	<logger name="com.asmr.web">
 		<level value="info" />
 	</logger>
 	

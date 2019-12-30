@@ -16,6 +16,8 @@
 		<project.reporting.outputEncoding>UTF-8
 		</project.reporting.outputEncoding>
 
+		<!-- 스프링 데이터 JPA 버전 -->
+		<spring-data-jpa.version>1.8.0.RELEASE</spring-data-jpa.version>
 		<!-- 스프링 프레임워크 버전 -->
 		<spring-framework.version>4.1.6.RELEASE</spring-framework.version>
 		<!-- JPA, 하이버네이트 버전 -->
@@ -34,6 +36,13 @@
 		<junit.version>4.12</junit.version>
 	</properties>
 	<dependencies>
+
+		<!-- 스프링 데이터 JPA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
+		</dependency>
 
 		<!-- 스프링 MVC -->
 		<dependency>
@@ -143,6 +152,42 @@
 			<version>1.9.13</version>
 		</dependency>
 	</dependencies>
+
+	<!-- Spring Data JPA 1.8이 스프링 4.0.9에 의존관계를 가지므로 스프링 버전을 직접 관리한다. -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

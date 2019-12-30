@@ -235,19 +235,19 @@
 					success : function(response) {
 						if (response.result == true) {
 							reset();
-							var ar = response.playList;
-							if (ar.length == 0)
+							var arr = response.playList;
+							if (arr.length == 0) // 저장된 재생 목록 없는 경우
 								alert('해당 슬롯에는 저장된 목록이 없습니다');
-							for (var i = 0; i < ar.length; i++) {
-								if (ar[i].track != 0) {
-									var track = parseInt(ar[i].track / 10);
+							for (var i = 0; i < arr.length; i++) {
+								if (arr[i].track != 0) {
+									var track = parseInt(arr[i].track / 10);
 									var aud = document.getElementById("audio"
 											+ track);
 									var vol = document
 											.getElementById("volumeslider"
 													+ track);
-									var volume = ar[i].volume;
-									play(ar[i].track, (".menu" + (i + 1)));
+									var volume = arr[i].volume;
+									play(arr[i].track, (".menu" + (i + 1)));
 									aud.volume = volume;
 									vol.value = volume * 10;
 								}

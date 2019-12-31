@@ -4,45 +4,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.asmr.repository.UserRepository;
+import com.asmr.repository.UserVORepository;
 import com.asmr.vo.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	UserRepository userrepository;
+	UserVORepository uservorepository;
 
 	@Override
 	@Transactional
 	public void insertUser(UserVO uservo) {
-		userrepository.insertUser(uservo);
+		uservorepository.save(uservo);
 	}
 
 	@Override
 	@Transactional
 	public boolean checkUserId(String id) {
-		if (userrepository.checkUserId(id) == null)
-			return true;
-		else
+		//if (uservorepository.checkUserId(id) == null)
+			//return true;
+		//else
 			return false;
 	}
 
 	@Override
 	@Transactional
 	public boolean loginUser(UserVO uservo) {
-		UserVO temp = userrepository.loginUser(uservo);
-		return uservo.getPw().equals(temp.getPw());
+		//UserVO temp = uservorepository.loginUser(uservo);
+		//return uservo.getPw().equals(temp.getPw());
+		return true;
 	}
 
 	@Override
 	@Transactional
 	public void updateUser(UserVO uservo) {
-		userrepository.updateUser(uservo);
+		//uservorepository.updateUser(uservo);
 	}
 
 	@Override
 	@Transactional
 	public void deleteUser(String id) {
-		userrepository.deleteUser(id);
+		uservorepository.delete(id);
 	}
 }

@@ -36,9 +36,9 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public Map<String, Object> checkUserId(@PathVariable String id) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		if (userservice.checkUserId(id))
+		//if (userservice.checkUserId(id))
 			result.put("result", Boolean.TRUE); // 사용 가능
-		else
+		//else
 			result.put("result", Boolean.FALSE); // 사용 불가
 		return result;
 	}

@@ -1,5 +1,7 @@
 package com.asmr.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +22,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public boolean checkUserId(String id) {
+	public List<UserVO> checkUserId(String id) {
 		//if (uservorepository.checkUserId(id) == null)
 			//return true;
 		//else
-			return false;
+		return uservorepository.findById(id);
 	}
 
 	@Override

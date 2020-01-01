@@ -1,5 +1,6 @@
 package com.asmr.web;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.asmr.service.UserService;
+import com.asmr.vo.UserVO;
 
 @Controller
 public class HomeController {
@@ -21,6 +23,12 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
+		List <UserVO> list = userservice.checkUserId("a");
+		for (UserVO uservo : list) {
+			System.out.println(uservo.getId());
+			System.out.println(uservo.getPw());
+		}
+		System.out.println("시발");
 		return "main_layout";
 	}
 

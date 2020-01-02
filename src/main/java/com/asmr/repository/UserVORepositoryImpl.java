@@ -1,6 +1,5 @@
 package com.asmr.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,41 +10,33 @@ import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport
 import com.asmr.vo.QUserVO;
 import com.asmr.vo.UserVO;
 import com.mysema.query.jpa.impl.JPAQuery;
+import com.mysema.query.jpa.impl.JPAUpdateClause;
 
 public class UserVORepositoryImpl extends QueryDslRepositorySupport implements UserVORepositoryCustom {
 	public UserVORepositoryImpl() {
 		super(UserVO.class);
 	}
-	
+
 	@PersistenceContext
 	EntityManager em;
 
-	
-	/*
-	Member foundMember = 
-	    queryFactory.selectFrom(member) // select + from
-	    .where(customer.username.eq("joont"))
-	    .fetchOne();
-*/
-	//JPAQueryFactory query = new JPAQueryFactory((Provider<EntityManager>) em);
-		/*
-
-	public UserVORepositoryImpl(JPAQueryFactory query) {
-		super(UserVO.class);
-		this.query = query;
-
-	}
-*/
 	@Override
 	public List<UserVO> findById(String id) {
 		JPAQuery query = new JPAQuery(em);
 		QUserVO uservo = QUserVO.userVO;
 		return query.from(uservo).where(uservo.id.eq(id)).list(uservo);
-
-		
-		//return selectFrom(uservo).list();
-				 //where(uservo.id.gt(id)).orderBy(uservo.id.desc()).fetch();
-	
 	}
-	
+
+	@Override
+	public List<UserVO> findByIdPw(String id, String pw) {
+		JPAQuery query = new JPAQuery(em);
+		QUserVO uservo = QUserVO.userVO;
+		return query.from(uservo).where((uservo.id.eq(id)).and(uservo.pw.eq(pw))).list(uservo);
+	}
+
+	@Override
+	public void updateUser(String id, String pw) {
+		QUserVO uservo = QUserVO.userVO;
+		Long affectedRow = new JPAUpdateClause(em, uservo).where(uservo.id.eq(id)).set(uservo.pw, pw).execute();
+	}
 }

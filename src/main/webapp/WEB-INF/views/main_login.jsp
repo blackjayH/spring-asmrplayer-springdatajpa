@@ -58,8 +58,8 @@
 					success : function(response) {
 						if (response.result == true)
 							location.href = '${path}/'
-						else
-							alert('로그인 실패');
+						if (response.result == false)
+							alert(response.message);
 					},
 					error : function(error) {
 						alert(error);

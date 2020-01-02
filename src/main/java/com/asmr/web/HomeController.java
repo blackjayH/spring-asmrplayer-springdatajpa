@@ -23,12 +23,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
-		List <UserVO> list = userservice.checkUserId("a");
-		for (UserVO uservo : list) {
-			System.out.println(uservo.getId());
-			System.out.println(uservo.getPw());
-		}
-		System.out.println("시발");
 		return "main_layout";
 	}
 

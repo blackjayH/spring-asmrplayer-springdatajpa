@@ -7,10 +7,5 @@ import com.asmr.vo.UserVO;
 
 @Repository
 public interface UserVORepository extends JpaRepository<UserVO, String>, UserVORepositoryCustom {
-	//void save(UserVO uservo);
-
-	//void delete(String id);
-	// boolean checkUserId(String id);
-	// void updateUser(UserVO uservo);
-	// UserVO loginUser(UserVO uservo);
+	
 }

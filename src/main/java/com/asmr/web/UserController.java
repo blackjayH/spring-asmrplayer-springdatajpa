@@ -36,9 +36,9 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public Map<String, Object> checkUserId(@PathVariable String id) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		//if (userservice.checkUserId(id))
+		if (userservice.checkUserId(id)) // 0
 			result.put("result", Boolean.TRUE); // 사용 가능
-		//else
+		else
 			result.put("result", Boolean.FALSE); // 사용 불가
 		return result;
 	}
@@ -47,13 +47,19 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, headers = { "Content-type=application/json" })
 	public Map<String, Object> loginUser(@RequestBody UserVO uservo, HttpSession session) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		if (userservice.loginUser(uservo)) {
-			session.setAttribute("id", uservo.getId());
-			result.put("result", Boolean.TRUE); // 로그인 성공
-			result.put("id", uservo.getId()); // 로그인 성공	
+		if (userservice.checkUserId(uservo.getId())) { // 0
+			result.put("result", Boolean.FALSE);
+			result.put("message", "없는 ID");
 		}
-		else
-			result.put("result", Boolean.FALSE); // 로그인 실패
+		else {
+			if (userservice.loginUser(uservo)) {
+				session.setAttribute("id", uservo.getId());
+				result.put("result", Boolean.TRUE); // 로그인 성공
+			} else {
+				result.put("result", Boolean.FALSE); // 로그인 실패
+				result.put("message", "비밀번호 체크");
+			}
+		}
 		return result;
 	}
 

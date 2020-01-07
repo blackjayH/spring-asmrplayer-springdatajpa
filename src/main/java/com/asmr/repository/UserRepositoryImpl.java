@@ -1,42 +1,43 @@
 package com.asmr.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
+import com.asmr.vo.QUserVO;
 import com.asmr.vo.UserVO;
+import com.mysema.query.jpa.impl.JPAQuery;
+import com.mysema.query.jpa.impl.JPAUpdateClause;
 
-@Repository
-public class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl extends QueryDslRepositorySupport implements UserRepositoryCustom {
+	public UserRepositoryImpl() {
+		super(UserVO.class);
+	}
+
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
-	public void insertUser(UserVO uservo) {
-		em.persist(uservo);
+	public List<UserVO> findById(String id) {
+		JPAQuery query = new JPAQuery(em);
+		QUserVO uservo = QUserVO.userVO;
+		return query.from(uservo).where(uservo.id.eq(id)).list(uservo);
 	}
 
 	@Override
-	public UserVO checkUserId(String id) {
-		return em.find(UserVO.class, id);
+	public List<UserVO> findByIdPw(String id, String pw) {
+		JPAQuery query = new JPAQuery(em);
+		QUserVO uservo = QUserVO.userVO;
+		return query.from(uservo).where((uservo.id.eq(id)).and(uservo.pw.eq(pw))).list(uservo);
 	}
 
 	@Override
-	public UserVO loginUser(UserVO uservo) {
-		return em.find(UserVO.class, uservo.getId());
+	public void updateUser(String id, String pw) {
+		QUserVO uservo = QUserVO.userVO;
+		Long affectedRow = new JPAUpdateClause(em, uservo).where(uservo.id.eq(id)).set(uservo.pw, pw).execute();
 	}
-
-	@Override
-	public void updateUser(UserVO uservo) {
-		UserVO temp = em.find(UserVO.class, uservo.getId());
-		temp.setPw(uservo.getPw());
-		em.persist(temp);
-	}
-
-	@Override
-	public void deleteUser(String id) {
-		em.remove(em.find(UserVO.class, id));
-	}
-
 }

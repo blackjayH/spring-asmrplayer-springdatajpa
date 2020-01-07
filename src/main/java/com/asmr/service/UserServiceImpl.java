@@ -4,24 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.asmr.repository.UserVORepository;
+import com.asmr.repository.UserRepository;
 import com.asmr.vo.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	UserVORepository uservorepository;
+	UserRepository userrepository;
 
 	@Override
 	@Transactional
 	public void insertUser(UserVO uservo) {
-		uservorepository.save(uservo);
+		userrepository.save(uservo);
 	}
 
 	@Override
 	@Transactional
 	public boolean checkUserId(String id) {
-		if (uservorepository.findById(id).size() == 0)
+		if (userrepository.findById(id).size() == 0)
 			return true;
 		return false;
 	}
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public boolean loginUser(UserVO uservo) {
-		if (uservorepository.findByIdPw(uservo.getId(), uservo.getPw()).size() == 1)
+		if (userrepository.findByIdPw(uservo.getId(), uservo.getPw()).size() == 1)
 			return true;
 		return false;
 	}
@@ -37,12 +37,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void updateUser(UserVO uservo) {
-		uservorepository.updateUser(uservo.getId(), uservo.getPw());
+		userrepository.updateUser(uservo.getId(), uservo.getPw());
 	}
 
 	@Override
 	@Transactional
 	public void deleteUser(String id) {
-		uservorepository.delete(id);
+		userrepository.delete(id);
 	}
 }

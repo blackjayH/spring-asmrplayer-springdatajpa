@@ -1,6 +1,5 @@
 package com.asmr.web;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,14 +24,8 @@ public class AudioController {
 	// 재생 목록 저장
 	@RequestMapping(value = "/audio", method = RequestMethod.POST, headers = { "Content-type=application/json" })
 	public Map<String, Object> insertAudio(@RequestBody List<AudioVO> playList) {
-		for (AudioVO audiovo : playList) {
-			//System.out.print(audiovo.getUserid() + " ");
-			//System.out.print(audiovo.getSlot() + " ");
-			//System.out.print(audiovo.getMusicnumber() + " ");
-			//System.out.print(audiovo.getTrack() + " ");
-			//System.out.println(audiovo.getVolume() + " ");
+		for (AudioVO audiovo : playList)
 			audioservice.insertAudio(audiovo);
-		}
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("result", Boolean.TRUE);
 		return result;

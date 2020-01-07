@@ -4,40 +4,26 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import com.asmr.vo.AudioVO;
+import com.asmr.vo.QAudioVO;
+import com.mysema.query.jpa.impl.JPAQuery;
 
-@Repository
-public class AudioRepositoryImpl implements AudioRepository {
+public class AudioRepositoryImpl extends QueryDslRepositorySupport implements AudioRepositoryCustom {
+	public AudioRepositoryImpl() {
+		super(AudioVO.class);
+	}
+
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
-	@Transactional
-	public void insertAudio(AudioVO audiovo) {
-		em.persist(audiovo);
+	public List<AudioVO> getAudioList(String userid, int slot) {
+		JPAQuery query = new JPAQuery(em);
+		QAudioVO audiovo = QAudioVO.audioVO;
+		return query.from(audiovo).where((audiovo.userid.eq(userid)).and(audiovo.slot.eq(slot))).list(audiovo);
 	}
 
-	@Override
-	@Transactional
-	public List<AudioVO> getAudioList(String id, int slot) {
-		String jpql = "SELECT m FROM AudioVO m where m.userid = :userid and m.slot = :slot";
-		return em.createQuery(jpql, AudioVO.class).setParameter("userid",id).setParameter("slot", slot).getResultList();
-	}
-
-	@Override
-	@Transactional
-	public void updateAudio(AudioVO audiovo) {
-
-	}
-
-	@Override
-	@Transactional
-	public void deleteAudio(AudioVO audiovo) {
-
-	}
 }

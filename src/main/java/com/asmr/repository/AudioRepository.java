@@ -1,15 +1,11 @@
 package com.asmr.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.asmr.vo.AudioVO;
 
-public interface AudioRepository {
-	public void insertAudio(AudioVO audiovo);
+@Repository
+public interface AudioRepository extends JpaRepository<AudioVO, String>, AudioRepositoryCustom {
 
-	public List<AudioVO> getAudioList(String id, int slot);
-
-	public void updateAudio(AudioVO audiovo);
-
-	public void deleteAudio(AudioVO audiovo);
 }

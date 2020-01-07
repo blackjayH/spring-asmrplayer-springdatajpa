@@ -15,22 +15,15 @@ public class AudioServiceImpl implements AudioService {
 	AudioRepository audiorepository;
 
 	@Override
+	@Transactional
 	public void insertAudio(AudioVO audiovo) {
-		audiorepository.insertAudio(audiovo);
+		audiorepository.save(audiovo);
 	}
-	
+
+	@Override
+	@Transactional
 	public List<AudioVO> getAudioList(String id, int slot) {
 		return audiorepository.getAudioList(id, slot);
 	}
 
-	@Override
-	public void updateAudio(AudioVO audiovo) {
-		audiorepository.updateAudio(audiovo);
-	}
-
-	@Override
-	public void deleteAudio(AudioVO audiovo) {
-		audiorepository.deleteAudio(audiovo);
-
-	}
 }

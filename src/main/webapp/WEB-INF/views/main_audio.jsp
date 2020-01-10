@@ -197,7 +197,6 @@
 					var aud = document.getElementById("audio" + i);
 					var Data = new Object();
 					Data.userid = '<c:out value="${id}"/>';
-					;
 					Data.musicnumber = i;
 					Data.track = AudioFlag[i];
 					Data.volume = aud.volume;
